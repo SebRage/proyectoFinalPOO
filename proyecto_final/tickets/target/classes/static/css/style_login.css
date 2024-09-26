@@ -1,0 +1,37 @@
+
+/*Diseños del formulario de ingreso*/
+
+.card {
+    max-width: 500px;
+    margin: 50px auto;
+    padding: 20px;
+}
+
+.card label,h2{
+    font-family: "Poetsen One", sans-serif;
+}
+
+.card-header {
+    text-align: center;
+}
+
+.card-title {
+    font-size: 1.75rem;
+}
+
+.card-description {
+    margin-bottom: 1rem;
+    color: #6c757d;
+}
+
+.btn-primary {
+    width: 100%;
+}
+
+.text-muted {
+    color: #6c757d;
+}
+
+.underline {
+    text-decoration: underline;
+}

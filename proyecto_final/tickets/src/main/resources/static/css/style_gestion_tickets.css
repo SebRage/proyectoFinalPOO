@@ -1,0 +1,35 @@
+/*Estilos ded la gestion de tickets*/
+
+.badge-abierto {
+    background-color: #0d6efd;
+}
+
+.badge-cerrado {
+    background-color: #28a745;
+}
+
+.badge-alta {
+    background-color: #dc3545;
+}
+
+.badge-mediana {
+    background-color: #ffc107;
+}
+
+.badge-baja {
+    background-color: #6c757d;
+}
+
+/*Estilo de las cartas de total, abiertos, cerrados*/
+.card{
+    border: 2px solid #000000;
+    border-radius: 8px;
+}
+
+.card-header{
+    background-color: #6c757d;
+    color: #ffffff;
+}
+
+
+

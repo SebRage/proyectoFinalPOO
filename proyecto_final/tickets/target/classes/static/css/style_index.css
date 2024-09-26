@@ -1,0 +1,15 @@
+.text-primary-foreground {
+    color: #fff !important;
+}
+
+.bg-muted {
+    background-color: #f8f9fa !important;
+}
+
+.text-muted-foreground {
+    color: #6c757d !important;
+}
+
+.bg-background {
+    background-color: #fff;
+}

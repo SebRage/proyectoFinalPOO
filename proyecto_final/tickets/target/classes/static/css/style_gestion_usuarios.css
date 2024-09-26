@@ -1,0 +1,13 @@
+/*Gestion de usuarios CSS*/
+h1{
+    text-align: left;
+    margin-top: 20px;
+}
+
+.btn_prymary_css{
+    height: 40px;
+    margin-top: 50px;
+}
+.tabla_usuarios{
+    border-radius: 10px;
+}

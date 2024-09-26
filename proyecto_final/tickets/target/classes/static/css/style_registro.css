@@ -1,0 +1,37 @@
+/*Estilos de registro*/
+
+.form-container {
+    max-width: 500px;
+    margin: 50px auto;
+    padding: 20px;
+}
+
+.form-label{
+    font-family: "Poetsen One", sans-serif;
+}
+
+.form-header {
+    text-align: center;
+}
+
+.form-title {
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.form-description {
+    margin-bottom: 1rem;
+    color: #6c757d;
+}
+
+.btn-primary {
+    width: 100%;
+}
+
+.text-muted {
+    color: #6c757d;
+}
+
+.underline {
+    text-decoration: underline;
+}

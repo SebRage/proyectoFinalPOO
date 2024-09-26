@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión de Tickets</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../static/css/style_gestion_tickets.css">
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="index.html">
+                <i class="fas fa-ticket-alt"></i> Tickets ADO
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="gestion_tickets.html">Gestión de Tickets</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="gestion_usuarios.html">Gestión de Usuarios</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="gestion_eventos.html">Gestión de Eventos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="inicio.html">Cerrar sesión</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container my-4">
+        <header class="mb-4">
+            <h1 class="text-left">Gestión de Tickets</h1>
+        </header>
+
+        <div class="row mb-4">
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-header">Total de Tickets</div>
+                    <div class="card-body">
+                        <h2 id="totalTickets" class="card-title text-center">0</h2>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-header">Tickets Abiertos</div>
+                    <div class="card-body">
+                        <h2 id="openTickets" class="card-title text-center">0</h2>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-header">Tickets Cerrados</div>
+                    <div class="card-body">
+                        <h2 id="closedTickets" class="card-title text-center">0</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="d-flex justify-content-between mb-4">
+            <div>
+                <button class="btn btn-secondary me-2" id="filterAll">Todos</button>
+                <button class="btn btn-success me-2" id="filterActive">Activos</button>
+                <button class="btn btn-danger" id="filterInactive">Inactivos</button>
+            </div>
+            <button type="button" class="btn btn-primary ms-auto" id="crearTicket" data-bs-toggle="modal"
+                data-bs-target="#ticketModal">Crear Ticket</button>
+        </div>
+
+        <!-- Modal para crear ticket -->
+        <div class="modal fade" id="ticketModal" tabindex="-1" aria-labelledby="ticketModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="ticketModalLabel">Crear Nuevo Ticket</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Llena los siguientes campos para crear un nuevo ticket.</p>
+                        <form id="ticketForm">
+                            <div class="mb-3">
+                                <label for="description" class="form-label">Descripción</label>
+                                <textarea id="descriptionTicket" class="form-control"
+                                    placeholder="Describe el problema y dejanos tus datos" rows="4"></textarea>
+                            </div>
+                            <div class="row g-3 mt-3">
+                                <div class="col-md-6">
+                                    <label for="priority" class="form-label">Prioridad</label>
+                                    <select class="form-select" id="priorityTicket">
+                                        <option value="0">Selecciona la prioridad</option>
+                                        <option value="3">Alta</option>
+                                        <option value="2">Media</option>
+                                        <option value="1">Baja</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                        <button type="button" class="btn btn-primary" id="submitTicket">Crear Ticket</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ... (el resto de tu código permanece igual) ... -->
+
+        <!-- Tabla para mostrar los tickets -->
+        <table class="table table-bordered">
+            <thead class="thead-light">
+                <tr>
+                    <th>Ticket #</th>
+                    <th>Estado</th>
+                    <th>Prioridad</th>
+                    <th>Descripción</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody id="ticketTableBody">
+            </tbody>
+        </table>
+
+
+
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="../static/js/gestion_tickets.js"></script> <!-- Archivo JavaScript separado -->
+</body>
+
+</html>
