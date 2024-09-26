@@ -90,8 +90,6 @@ $(document).ready(function () {
         filtrarTickets('Inactivo');
     });
 
-
-
     window.eliminarTicket = function (id) {
         if (confirm("¿Estás seguro de que deseas eliminar este ticket?")) {
             $.ajax({
@@ -107,6 +105,45 @@ $(document).ready(function () {
             });
         }
     };
+
+    // Handle the creation of a new ticket
+    $('#submitTicket').on('click', function () {
+        // Retrieve values from the form
+        const descripcion = $('#descriptionTicket').val();
+        const prioridadId = $('#priorityTicket').val();
+
+        // Check if inputs are valid
+        if (!descripcion || prioridadId === "0") {
+            alert("Por favor, completa todos los campos.");
+            return;
+        }
+
+        // Construct the ticket object
+        const newTicket = {
+            descripcion: descripcion,
+            prioridad: {
+                idPrioridad: parseInt(prioridadId) // Assuming the backend uses this structure
+            }
+        };
+
+        // Send the POST request to create a new ticket
+        $.ajax({
+            url: "http://localhost:8080/crearTicket", // Change the URL according to your API endpoint
+            method: "POST",
+            contentType: "application/json",
+            data: JSON.stringify(newTicket),
+            success: function (response) {
+                // Handle success
+                alert("Ticket creado exitosamente.");
+                $('#ticketModal').modal('hide'); // Close the modal
+                cargarTickets();
+            },
+            error: function (xhr, status, error) {
+                // Handle error
+                alert("Error al crear el ticket: " + xhr.responseText);
+            }
+        });
+    });
 
     cargarTickets();
 });

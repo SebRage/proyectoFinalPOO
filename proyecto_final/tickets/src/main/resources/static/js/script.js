@@ -49,7 +49,7 @@ $(document).ready(function () {
             contentType: 'application/json',
             data: JSON.stringify(usuario),
             success: function (response) {
-                window.location.href = 'http://127.0.0.1:5500/tickets/src/main/resources/templates/';
+                window.location.href = 'http://127.0.0.1:5501/tickets/src/main/resources/templates/';
             },
             error: function (xhr) {
                 alert('Error al registrar: ' + xhr.responseText);
@@ -82,7 +82,7 @@ $(document).ready(function () {
             contentType: 'application/json',
             data: JSON.stringify({ nombre: username, contrasena: password }),
             success: function (data) {
-                window.location.href = 'http://127.0.0.1:5500/tickets/src/main/resources/templates/';
+                window.location.href = 'http://127.0.0.1:5501/tickets/src/main/resources/templates/';
             },
             error: function (xhr) {
                 if (xhr.status === 401) {
