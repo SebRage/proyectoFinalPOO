@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    // Manejo del |tro de usuario
+
     $('#registroButton').click(function (event) {
         event.preventDefault();
 
@@ -115,7 +115,7 @@ $(document).ready(function () {
         });
     });
 
-    
+
 
     // Manejo del inicio de sesión
     $('#loginButton').click(function (event) {
@@ -226,10 +226,10 @@ $(document).ready(function () {
 
     function cargarUsuarios() {
         $.ajax({
-            url: 'http://127.0.0.1:8080/usuarios', 
+            url: 'http://127.0.0.1:8080/usuarios',
             method: 'GET',
             success: function (usuarios) {
-                $('#usuariosBody').empty(); 
+                $('#usuariosBody').empty();
                 usuarios.forEach(function (usuario) {
                     $('#usuariosBody').append(`
                         <tr>
@@ -256,17 +256,16 @@ $(document).ready(function () {
 
     window.abrirModalEditar = function (id) {
         $.ajax({
-            url: `http://127.0.0.1:8080/usuarios/${id}`, // Cambia a tu URL de API
+            url: `http://127.0.0.1:8080/usuarios/${id}`,
             method: 'GET',
             success: function (usuario) {
-                // Llenar el formulario con los datos del usuario
+
                 $('#editarName').val(usuario.nombre);
                 $('#editarDocumento').val(usuario.documento);
                 $('#editarEmail').val(usuario.correo);
                 $('#editarTelefono').val(usuario.telefono);
-                $('#idUsuario').val(usuario.idUsuario); // Establecer el ID del usuario en el campo oculto
+                $('#idUsuario').val(usuario.idUsuario);
 
-                // Establecer el perfil correspondiente en el select
                 $('#editarPerfil').val(usuario.perfil.idPerfil);
 
 
@@ -283,36 +282,35 @@ $(document).ready(function () {
     $('#editarUsuario').click(function () {
         const id = $('#idUsuario').val();
         const usuarioData = {
-            idUsuario: id, // Asegúrate de incluir el ID del usuario
+            idUsuario: id,
             nombre: $('#editarName').val(),
             documento: $('#editarDocumento').val(),
             correo: $('#editarEmail').val(),
             telefono: $('#editarTelefono').val(),
-            contrasena: $('#editarContrasena').val(), // Asegúrate de tener este campo
-            estado: { idEstado: 1 }, // Incluye el estado con el ID adecuado
-            perfil: { idPerfil: $('#editarPerfil').val() } // Estructura completa del perfil
+            contrasena: $('#editarContrasena').val(),
+            estado: { idEstado: 1 },
+            perfil: { idPerfil: $('#editarPerfil').val() }
         };
 
-        
-        if (usuarioData.nombre === '' || usuarioData.documento === '' || usuarioData.correo === '' || usuarioData.telefono === ''|| usuarioData.contrasena === '' ) {
+
+        if (usuarioData.nombre === '' || usuarioData.documento === '' || usuarioData.correo === '' || usuarioData.telefono === '' || usuarioData.contrasena === '') {
             alert('Por favor, complete todos los campos.');
             return;
         }
 
-        actualizarUsuario(id, usuarioData); // Llamar a la función para actualizar
+        actualizarUsuario(id, usuarioData);
     });
 
     function actualizarUsuario(id, usuarioData) {
         $.ajax({
-            url: `http://127.0.0.1:8080/usuarios/${id}`, // Cambia a tu URL de API
-            method: 'PUT', // El método PUT se usa para actualizar
+            url: `http://127.0.0.1:8080/usuarios/${id}`,
+            method: 'PUT',
             contentType: 'application/json',
-            data: JSON.stringify(usuarioData), // Convertir los datos a JSON
+            data: JSON.stringify(usuarioData),
             success: function (response) {
-                // Si la actualización es exitosa, cerrar el modal y recargar la tabla
                 $('#editarUsuarioModal').modal('hide');
                 alert('Usuario actualizado correctamente.');
-                cargarUsuarios(); // Recargar la lista de usuarios
+                cargarUsuarios();
             },
             error: function (error) {
                 console.error('Error al actualizar el usuario', error);
@@ -329,7 +327,7 @@ $(document).ready(function () {
                 method: 'DELETE',
                 success: function () {
                     alert('Usuario eliminado exitosamente.');
-                    cargarUsuarios(); // Recargar la lista de usuarios después de eliminar
+                    cargarUsuarios();
                 },
                 error: function (xhr) {
                     alert('Error al eliminar el usuario: ' + xhr.responseText);
@@ -337,14 +335,4 @@ $(document).ready(function () {
             });
         }
     };
-
-
-
-
-
-
-
-
-
-
 });

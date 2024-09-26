@@ -9,7 +9,7 @@ $(document).ready(function () {
             success: function (data) {
                 let ticketTableBody = $("#ticketTableBody");
                 ticketTableBody.empty();
-                window.tickets = data; // Guardar tickets en el contexto global
+                window.tickets = data;
 
                 data.forEach(function (ticket) {
                     let estado = ticket.estado ? ticket.estado.estado : "N/A";
@@ -77,7 +77,7 @@ $(document).ready(function () {
         });
     }
 
-    // Event listeners for filter buttons
+
     $("#filterAll").on("click", function () {
         filtrarTickets('todos');
     });
@@ -97,7 +97,7 @@ $(document).ready(function () {
                 method: 'DELETE',
                 success: function () {
                     alert('Ticket eliminado exitosamente.');
-                    cargarTickets(); // Recargar la lista de tickets después de eliminar
+                    cargarTickets();
                 },
                 error: function (xhr) {
                     alert('Error al eliminar el ticket: ' + xhr.responseText);
@@ -106,36 +106,36 @@ $(document).ready(function () {
         }
     };
 
-    // Handle the creation of a new ticket
+
     $('#submitTicket').on('click', function () {
         // Retrieve values from the form
         const descripcion = $('#descriptionTicket').val();
         const prioridadId = $('#priorityTicket').val();
 
-        // Check if inputs are valid
+
         if (!descripcion || prioridadId === "0") {
             alert("Por favor, completa todos los campos.");
             return;
         }
 
-        // Construct the ticket object
+
         const newTicket = {
             descripcion: descripcion,
             prioridad: {
-                idPrioridad: parseInt(prioridadId) // Assuming the backend uses this structure
+                idPrioridad: parseInt(prioridadId)
             }
         };
 
-        // Send the POST request to create a new ticket
+
         $.ajax({
-            url: "http://localhost:8080/crearTicket", // Change the URL according to your API endpoint
+            url: "http://localhost:8080/crearTicket",
             method: "POST",
             contentType: "application/json",
             data: JSON.stringify(newTicket),
             success: function (response) {
                 // Handle success
                 alert("Ticket creado exitosamente.");
-                $('#ticketModal').modal('hide'); // Close the modal
+                $('#ticketModal').modal('hide');
                 cargarTickets();
             },
             error: function (xhr, status, error) {
