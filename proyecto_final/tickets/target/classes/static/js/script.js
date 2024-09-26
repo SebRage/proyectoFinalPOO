@@ -57,6 +57,64 @@ $(document).ready(function () {
         });
     });
 
+
+    $('#registroUser').click(function (event) {
+        event.preventDefault();
+
+        const name = $('#name').val().trim();
+        const documento = $('#documento').val().trim();
+        const email = $('#email').val().trim();
+        const telefono = $('#telefono').val().trim();
+        const password = $('#password').val().trim();
+
+        if (name === '') {
+            alert('Por favor, ingresa tu nombre.');
+            return;
+        }
+
+        if (documento === '' || isNaN(documento)) {
+            alert('Por favor, ingresa un documento válido que contenga solo números.');
+            return;
+        }
+
+        const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+        if (email === '' || !emailPattern.test(email)) {
+            alert('Por favor, ingresa un correo electrónico válido.');
+            return;
+        }
+
+        if (telefono === '') {
+            alert('Por favor, ingresa tu teléfono.');
+            return;
+        }
+
+        if (password === '') {
+            alert('Por favor, ingresa tu contraseña.');
+            return;
+        }
+
+        const usuario = {
+            nombre: name,
+            documento: documento,
+            correo: email,
+            telefono: telefono,
+            contrasena: password
+        };
+
+        $.ajax({
+            url: 'http://127.0.0.1:8080/registrar_usuario',
+            type: 'POST',
+            contentType: 'application/json',
+            data: JSON.stringify(usuario),
+            success: function (response) {
+                window.location.href = 'http://127.0.0.1:5501/tickets/src/main/resources/templates/gestion_usuarios.html';
+            },
+            error: function (xhr) {
+                alert('Error al registrar: ' + xhr.responseText);
+            }
+        });
+    });
+
     
 
     // Manejo del inicio de sesión
